@@ -1,0 +1,32 @@
+## 📝 Problem
+
+Table: `Employee`
+
+| Column    | Type    |
+|-----------|---------|
+| id        | int     |
+| name      | varchar |
+| salary    | int     |
+| managerId | int     |
+
+Each employee may have a manager, and the manager is also in the same table
+(`managerId` references `id`).
+
+Write a SQL query to report the names of employees who earn **more than their managers**.
+
+Return the result table with the column:
+
+| Column   |
+|----------|
+| Employee |
+
+---
+
+## ✅ Solution (Self-Join)
+
+```sql
+SELECT e1.name AS Employee
+FROM Employee e1
+JOIN Employee e2
+  ON e1.managerId = e2.id
+WHERE e1.salary > e2.salary;
